@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+   <meta charset="utf-8">
+   <title>Activity Log</title>
+
+
+</head>
+
+<body>
+        <fieldset>
+            <label for="fname">Total de dias:</label><br>
+            <input type="number" id = "n_days" name="n_days"><br>
+        
+            <label for="lname">Fração de folgas (total de folgas / total de dias):</label><br>
+            <input type="number" id = "frac_days_off" name = "fra_days_off"><br>
+        
+            <label for = "fname">FDS (separado por virgulas):</label><br>
+            <input type = "text" id = "weekend" name="weekend"><br>
+        
+            
+            <label for="fname">Máximo de dias consecutivos sem folga:</label><br>
+            <input type="number" id="max_consecutive_work_days" name="max_consecutive_work_days"><br><br><br>
+            
+            <fieldset>
+                <br>
+                <label for = "a">CTE min. manhã:</label>
+                <input type="text" id="cte_min_manha" name="fname" size="1">
+                <label for = "a">CTE max. manhã:</label>
+                <input type="text" id="cte_max_manha" name="fname" size="1">
+                <button id = "add_cte_manha" onclick="add_cte_manha()">Add.</button> <br> 
+  
+                <label for = "a">CTE min. tarde:</label>
+                <input type="text" id="cte_min_tarde" name="fname" size="1">
+                <label for = "a">CTE max. tarde:</label>
+                <input type="text" id="cte_max_tarde" name="fname" size="1">
+                <button id = "add_cte_manha" onclick="add_cte_tarde()">Add.</button> <br> <br>
+  
+
+                <label for = "fname">Cob. min. manhã:</label>
+                <input type = "text" id = "cob_min_manha" name="cob_min_manha"><br>
+
+                <label for = "fname">Cob. max. manhã:</label>
+                <input type = "text" id = "cob_max_manha" name="cob_max_manha"><br>
+
+                <label for = "fname">Cob. min. tarde:</label>
+                <input type = "text" id = "cob_min_tarde" name="cob_min_tarde"><br>
+
+                <label for = "fname">Cob. max. tarde:</label>
+                <input type = "text" id = "cob_max_tarde" name="cob_max_tarde"><br>
+            </fieldset>
+
+        </fieldset>
+    
+        <button id = "add_enfermeira" onclick="add_nurse()">Add. enfermeira</button>
+        <button id = "add_enfermeira" onclick="remove_nurse()">Remov. enfermeira</button> <br>
+
+        <fieldset>
+            <div id = "container-nurses">  <!--Input de enfermeiras-->
+            </div>    
+        </fieldset>
+
+
+
+        <button id = "gera_instancia" onclick="generate_instance()">Gerar instancia</button> <br>
+
+        <script src="code.js"></script>
+</body>
+
+</html>
+
+
+  

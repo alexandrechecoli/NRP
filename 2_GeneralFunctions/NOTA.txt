@@ -1,0 +1,4 @@
+
+- Mantém funções genéricas (que podem ser usadas em quaisquer projetos).
+- As funções são separadas por arquivos diferentes, por exemplo, funções
+ que usam json, funções numéricas, funções de arquivos/pastas, etc...
