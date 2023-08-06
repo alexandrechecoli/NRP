@@ -17,6 +17,9 @@
 
 #include "inputdata.h"
 #include "jsonparser.h"
+#include "nrp.h"
+
+
 
 using namespace std;
 using namespace rapidjson;

@@ -25,21 +25,13 @@
 
 using namespace std;
 
-const double EPS = 1e-2;
-const long int MAX_LONG_INT = std::numeric_limits<long int>::max();
-const double MAX_DOUBLE = std::numeric_limits<double>::max();
-
-int get_int_random_between(int xlower, int xupper);
-
-double get_random_0_1();
-bool is_equal(double xa, double xb);
-bool is_A_less_than_B(double A, double B);
-std::list<string> get_instance_files_list(string instances_dir_path);
 void export_json_DOM_file(rapidjson::Document &xjson, string &xfile_path);
+std::list<string> get_instance_files_list(string instances_dir_path);
+string json_to_string(rapidjson::Document &xjson);
 rapidjson::Document string_to_json(string json_string);
 rapidjson::Document read_json_string_DOM(string xfile_path);
 rapidjson::Document read_json_string_DOM_API(string xfile_path);
-string json_to_string(rapidjson::Document &xjson);
+void parse_json_to_csv(rapidjson::Document &xjson, string path);
 
 
 #endif // GENERAL_FUNCTIONS_H

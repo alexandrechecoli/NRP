@@ -14,15 +14,17 @@ Document OptLib::optimize(Document &json_input)
     JsonParser parser;
     parser.parse_json_input(input,json_input);
 
-    output.SetObject();
-    output.CopyFrom(json_input,json_input.GetAllocator());
+    // Otimiza o problema
+    NRP nrp(&input);
+    nrp.optimize();
+
+
+    //output.SetObject();
+    //output.CopyFrom(json_input,json_input.GetAllocator());
+    output = parser.parse_json_output(input, json_input);
+
 
     return output;
 }
 
-//cancelamento 2023 041 895 642 58
 
-
-// OI FIBRA
-// 119,90 - 500mb 7 dias de teste 12 meses |
-// 109,90 -

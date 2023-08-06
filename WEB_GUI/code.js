@@ -1,5 +1,5 @@
 
-var nurse_index = 1;
+let nurse_index = 1;
 function add_nurse()
 {
     cont_enfermeiras = document.getElementById("container-nurses");
@@ -46,7 +46,7 @@ function remove_nurse()
 {
     if(nurse_index != 1 )
     {
-        var cont_nurses = document.getElementById('container-nurses');
+        let cont_nurses = document.getElementById('container-nurses');
         cont_nurses.removeChild(cont_nurses.lastChild);
         nurse_index --;
     }
@@ -54,16 +54,20 @@ function remove_nurse()
 
 function generate_instance()
 {
-    var root = new Object();
-    var input = new Object();
-    var data = new Object();
+    let root = new Object();
+    let input = new Object();
+    let data = new Object();
 
     data.n_days = parseInt(document.getElementById("n_days").value);
     data.frac_days_off = parseFloat(document.getElementById("frac_days_off").value);
+    data.frac_days_off_weekend = parseFloat(document.getElementById("frac_days_off_weekend").value);
     data.max_consecutive_work_days = parseInt(document.getElementById("max_consecutive_work_days").value);
 
+
+
+
     // FDS
-    const v_weekend = [];
+    let v_weekend = [];
     if(document.getElementById("weekend").value != "")
     {
         v_weekend = document.getElementById("weekend").value.split(",").map(Number);
@@ -71,7 +75,7 @@ function generate_instance()
     data.weekend = v_weekend;
 
     //SHIFT COVERAGE
-    var shift_coverage = new Object();
+    let shift_coverage = new Object();
     shift_coverage.mor_min = [];
     shift_coverage.mor_max = [];
     shift_coverage.aft_min = [];
@@ -96,9 +100,9 @@ function generate_instance()
 
     
 
-    console.log("shift",shift_coverage.mor_min);
+    
     // Enfermeiras
-    var nurses = [];
+    let nurses = [];
     for(let i = 0; i  < document.getElementById("container-nurses").children.length;i++)
     {
         let children = document.getElementById("container-nurses").children[i];

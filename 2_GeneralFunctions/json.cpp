@@ -126,3 +126,119 @@ string json_to_string(rapidjson::Document &xjson)
     std::string s(buffer.GetString(), buffer.GetSize());
     return s;
 }
+
+void parse_json_to_csv(rapidjson::Document &xjson, string path)
+{
+
+
+    ofstream o;
+    o.open(path.c_str());
+    o << ";";
+    for(size_t i = 0; i < xjson["output"]["M_morning"][0].Size();i++)
+    {
+         o << i << ";";
+    }
+    o <<";Turno;Folgas;Folgas FDS;Turnos extras";
+    o << "\n";
+
+     //output.AddMember("v_shift_assigned_to_nurse",v_shift_assigned_to_nurse,root_output_DOM.GetAllocator());
+     //output.AddMember("v_nurse_sum_rest_days",v_nurse_sum_rest_days,root_output_DOM.GetAllocator());
+     //output.AddMember("v_nurse_sum_rest_days_weekends",v_nurse_sum_rest_days_weekends,root_output_DOM.GetAllocator());
+     //output.AddMember("v_nurse_extra_shifts",v_nurse_extra_shifts,root_output_DOM.GetAllocator());
+
+    for(size_t i = 0; i < xjson["output"]["M_morning"].Size();i++)
+    {
+         o << i << ";";
+        for(size_t j = 0; j < xjson["output"]["M_morning"][i].Size();j++)
+        {
+            o << xjson["output"]["M_morning"][i][j].GetInt() << ";";
+        }
+        o << ";" << xjson["output"]["v_shift_assigned_to_nurse"][i].GetInt() << ";"
+                 << xjson["output"]["v_nurse_sum_rest_days"][i].GetInt() << ";"
+                 << xjson["output"]["v_nurse_sum_rest_days_weekends"][i].GetInt() << ";"
+                 << xjson["output"]["v_nurse_extra_shifts"][i].GetInt();
+        o << "\n";
+    }
+
+    // Pulando uma linha
+    for(size_t j = 0; j < xjson["output"]["M_morning"][0].Size();j++) o << ";";
+    o << "\n";
+
+    // Morning minimum
+    o << ";";
+    for(size_t j = 0; j < xjson["input"]["data"]["shift_coverage"]["mor_min"].Size();j++)
+    {
+       o << xjson["input"]["data"]["shift_coverage"]["mor_min"][j].GetInt() << ";";
+    }
+     o << "\n";
+     o << ";";
+    for(size_t j = 0; j < xjson["output"]["v_mor_diff"].Size();j++)
+    {
+       o << xjson["output"]["v_mor_diff"][j].GetInt() << ";";
+    }
+    // Break line
+    o << "\n";
+    // Empty line
+    for(size_t j = 0; j < xjson["output"]["M_morning"][0].Size();j++) o << ";";
+    o << "\n";
+
+
+    o << ";";
+    for(size_t i = 0; i < xjson["output"]["M_morning"][0].Size();i++)
+    {
+         o << i << ";";
+    }
+     o << "\n";
+    for(size_t i = 0; i < xjson["output"]["M_morning"].Size();i++)
+    {
+        o << i << ";";
+        for(size_t j = 0; j < xjson["output"]["M_afternoon"][i].Size();j++)
+        {
+            o << xjson["output"]["M_afternoon"][i][j].GetInt() << ";";
+        }
+        o << "\n";
+    }
+
+    // Pulando uma linha
+    for(size_t j = 0; j < xjson["output"]["M_morning"][0].Size();j++) o << ";";
+    o << "\n";
+
+    // Morning minimum
+    o << ";";
+    for(size_t j = 0; j < xjson["input"]["data"]["shift_coverage"]["aft_min"].Size();j++)
+    {
+       o << xjson["input"]["data"]["shift_coverage"]["aft_min"][j].GetInt() << ";";
+    }
+     o << "\n";
+     o << ";";
+    for(size_t j = 0; j < xjson["output"]["v_aft_diff"].Size();j++)
+    {
+       o << xjson["output"]["v_aft_diff"][j].GetInt() << ";";
+    }
+
+    // Dados da função objetivo
+    o << "\n";
+    o << "CUSTOS\n";
+    o << "Soma diferencas manha;" << xjson["output"]["solution_cost"]["sum_mor_diff"].GetInt() << "\n";
+    o << "Soma diferencas tarde;" << xjson["output"]["solution_cost"]["sum_aft_diff"].GetInt() << "\n";
+    o << "Soma turnos extras;" << xjson["output"]["solution_cost"]["sum_extra_shifts"].GetInt() << "\n";
+    o << "Balancemanto de turnos extras;" << xjson["output"]["solution_cost"]["extra_shift_load_balance"].GetInt() << "\n";
+    o << "Violacoes folga fora de FDS;" << xjson["output"]["solution_cost"]["weekend_rest_violation"].GetInt() << "\n";
+    o << "Violacoes folgas desejadas;" << xjson["output"]["solution_cost"]["prefered_rest_violation"].GetInt() << "\n";
+    o << "Custo;" << xjson["output"]["solution_cost"]["cost"].GetInt() << "\n";
+    o.close();
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
